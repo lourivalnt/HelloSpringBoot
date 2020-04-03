@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<meta charset="utf-8"></meta>
+<title>Insert title here</title>
+
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+</head>
+<body>
+	<!-- Header -->
+	<nav class="navbar navbar-inverse navbar-static-top" th:fragment="header">
+		<div class="container">
+		<a class="navbar-brand" href="#">TreinaWeb</a>
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false">
+				    <span class="sr-only">Toggle navigation</span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				    <span class="icon-bar"></span>
+				 </button>
+			</div>
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="nav navbar-nav">
+					<li><a  href="/">Início</a></li>
+					<li><a  href="/instituicoes/index">Instituições</a></li>
+					<li><a  href="/alunos/index">Alunos</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	
+	<!-- FOOTER -->
+	<div th:fragment="footer" style="text-align: right; position: absolute; bottom:0; width:100%; background-color: #000; color:#FFF">
+		&copy; 2020 TreinaWeb |
+	</div>
+</body>
+</html>

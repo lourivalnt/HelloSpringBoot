@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"></meta>
+<title>Hello Thymeleaf</title>
+
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+
+</head>
+<body>
+
+	<div th:replace="fragmentos/fragmentos :: header" ></div>
+
+	<span th:text="'Mensagem do servidor: '+ ${mensagem}"></span>
+	
+	<input type="text" class="form-control" />
+	
+	<div th:replace="fragmentos/fragmentos :: footer" ></div>
+</body>
+</html>

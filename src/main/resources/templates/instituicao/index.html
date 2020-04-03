@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<meta charset="UTF-8"></meta>
+<title>TreinaWeb Spring Boot - Litsa de Instituições</title>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragmentos/fragmentos :: header" ></div>
+	
+	<div class="container">
+		<h2>Lista de instituições cadastradas</h2>
+		
+		<div class="row">
+			<div class="form-group col-md-3">
+				<input type="text" class="form-control" id="nome_buscar" />
+			</div>
+			<div class="form-group col-md-1">
+				<button class="btn btn-default" id="buscar">Pesquisar</button>
+			</div>
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Nome da instituição</th>
+					<th>Endereço</th>
+					<th>Ações</th>
+					<th><a href="/instituicoes/inserir" class="btn btn-primary">Nova instituição</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="instituicao: ${instituicoes}">
+					<td th:text="${instituicao.nome}" ></td>
+					<td th:text="${instituicao.endereco}" ></td>
+					<td>
+						<a class="btn btn-info" th:href="@{/instituicoes/editar/{id}(id=${instituicao.id})}" >Editar</a>
+						<a class="btn btn-danger" th:href="@{/instituicoes/excluir/{id}(id=${instituicao.id})}" >Excluir</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div th:replace="fragmentos/fragmentos :: footer" ></div>
+	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+	
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+
+			$("#buscar").click(function(){
+
+				$.ajax({
+					method: "GET",
+					url: "/instituicoes/buscar/"+$("#nome_buscar").val(),
+					success: function(data){
+
+						$("tbody > tr").remove();
+
+						$.each(data, function(){
+							$("tbody").append(
+								'<tr>'+
+									'<td>'+this.nome+'</td>'+
+									'<td>'+this.endereco+'</td>'+
+									'<td>'+
+										'<a class="btn btn-info" href="/instituicoes/editar/'+this.id+'" >Editar</a> '+
+										'<a class="btn btn-danger" href="/instituicoes/excluir/'+this.id+'" >Excluir</a>'+
+									"</td>"+
+								"</tr>"
+							);
+						})
+						
+					},
+					error: function(){
+						alert("Erro ao executar a perquisa");
+					}
+				});
+
+			});
+
+		});
+
+	</script>
+	
+</body>
+</html>

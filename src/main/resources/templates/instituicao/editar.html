@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+<meta charset="UTF-8"></meta>
+<title>TreinaWeb Spring Boot</title>
+<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+</head>
+<body>
+	<div th:replace="fragmentos/fragmentos :: header" ></div>
+	
+	<div class="container">
+		<h2>Instituição</h2>
+		
+		<form class="form-horizontal" action="/instituicoes/editar" method="post" th:object="${instituicao}">
+			<input type="hidden" th:field="*{id}" />
+			<div class="row">
+				<div class="form-group col-md-4">
+					<label for="txt-nome">Nome da instituição</label>
+					<input type="text" class="form-control" th:field="*{nome}" id="txt-nome"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-8">
+					<label for="txt-endereco">Endereço da instituição</label>
+					<input type="text" class="form-control" th:field="*{endereco}" id="txt-endereco"/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-2">
+					<button class="btn btn-primary" onclick="submit()">Salvar</button>
+				</div>
+			</div>
+		</form>
+		
+	</div>
+
+	<div th:replace="fragmentos/fragmentos :: footer" ></div>
+	<script src="/webjars/jquery/3.1.1-1/jquery.min.js"></script>
+</body>
+</html>
